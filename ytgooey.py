@@ -1,9 +1,8 @@
-import os
 import wx
 import subprocess
 
 def downloadvideo(url):
-        subprocess.Popen(str(r'youtube-dl -f "bestvideo[ext=mp4 height<=480]+bestaudio[ext=m4a]/best[ext=mp4 height<=480]/best" --no-mtime -v --all-subs --embed-subs -o "C:/Users/Luke/Videos/4K Video Downloader/%(title)s by %(uploader)s.%(ext)s" ' + str(url)))
+    subprocess.Popen(str(r'youtube-dl -f "bestvideo[ext=mp4 height<=480]+bestaudio[ext=m4a]/best[ext=mp4 height<=480]/best" --no-mtime --all-subs --embed-subs -o "C:/Users/Luke/Videos/4K Video Downloader/%(title)s by %(uploader)s.%(ext)s" ' + str(url)))
 
 class urltextdroptarget(wx.TextDropTarget):
     def __init__(self,object):
@@ -11,7 +10,7 @@ class urltextdroptarget(wx.TextDropTarget):
         self.object = object        
 
     def OnDropText(self,x,y,data):
-        if "www.youtube.com" in data:
+        if "youtube" in data:
             downloadvideo(data)
             return True
         else:
